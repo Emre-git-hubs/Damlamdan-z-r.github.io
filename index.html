@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beni Affedebilir misin?</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+
+      #container {
+        text-align: center;
+        width: 90%;
+        max-width: 600px;
+        position: relative;
+      }
+
+      img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .button-area {
+        width: 100%;
+        height: 250px;
+        margin-top: 20px;
+        position: relative;
+        border-radius: 10px;
+      }
+
+      button {
+        width: 45%;
+        max-width: 180px;
+        height: 50px;
+        border: none;
+        font-size: 16px;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+      }
+
+      #yes {
+        background-color: green;
+        left: 10px;
+        bottom: 10px;
+      }
+
+      #no {
+        background-color: red;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      /* ✨ Mesaj kutusu stilleri */
+      #popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        font-size: 20px;
+        color: #333;
+        display: none;
+        z-index: 10;
+        text-align: center;
+      }
+
+      #popup strong {
+        color: hotpink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h2>Beni affedebilir misin?</h2>
+      <img src="indir.jpg" alt="Kedi Resmi" />
+      <div class="button-area" id="button-area">
+        <button id="yes">Kabul ediyorum</button>
+        <button id="no">Kabul etmiyorum</button>
+      </div>
+    </div>
+
+    <!-- 🌟 Gizli Mesaj Kutusu -->
+    <div id="popup">
+      Beni affedeceğini biliyordum...<br><strong>Seni çok seviyorum 💖</strong>
+    </div>
+
+    <script>
+      const noButton = document.getElementById("no");
+      const area = document.getElementById("button-area");
+      const yesButton = document.getElementById("yes");
+      const popup = document.getElementById("popup");
+
+      // Kaçan buton
+      noButton.addEventListener("mouseenter", () => {
+        const areaWidth = area.clientWidth;
+        const areaHeight = area.clientHeight;
+        const buttonWidth = noButton.offsetWidth;
+        const buttonHeight = noButton.offsetHeight;
+
+        const maxX = areaWidth - buttonWidth;
+        const maxY = areaHeight - buttonHeight;
+
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        noButton.style.left = randomX + "px";
+        noButton.style.top = randomY + "px";
+      });
+
+      // Kabul ediyorum tıklanınca mesaj çıkar
+      yesButton.addEventListener("click", () => {
+        popup.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
